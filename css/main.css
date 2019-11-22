@@ -5,3 +5,15 @@
 @import "common/color.css";
 @import "common/float.css";
 @import "common/width.css";
+@import "common/visibility.css";
+@import "common/layout.css";
+/*组件的样式*/
+@import "components/button.css";
+@import "components/card.css";
+@import "components/form.css";
+@import "components/form-item.css";
+@import "components/icon.css";
+@import "components/input.css";
+@import "components/link.css";
+/*页面各自的样式*/
+@import "login.css";
