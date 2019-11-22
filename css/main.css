@@ -1,0 +1,7 @@
+/*清除浏览器默认样式*/
+@import "normalize.css";
+/*共用的样式*/
+@import "common/font.css";
+@import "common/color.css";
+@import "common/float.css";
+@import "common/width.css";
