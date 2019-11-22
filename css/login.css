@@ -1,0 +1,72 @@
+/*整个页面的布局，默认适配PC及以上的大屏幕*/
+html {
+    height: 100%;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/*LOGO*/
+.login-logo {
+    flex: 0 1 auto;
+    min-height: 150px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+/*整个登录部分，包括图片和表单*/
+.login-section {
+    flex: 1 1 auto;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.login-ad {
+    flex: 0 1 auto;
+}
+
+.login-form {
+    flex: 1 1 auto;
+    max-width: 550px;
+}
+
+/*超链接*/
+.link {
+    font-weight: bold;
+}
+
+/*适配平板*/
+@media all and (max-width: 1024px) {
+    .login-form {
+        max-width: 450px;
+    }
+}
+
+/*适配平板，但此时需要换行，不然会影响视觉效果*/
+@media all and (max-width: 850px) {
+    button[type="reset"] {
+        width: 100%;
+    }
+
+    .login-register {
+        margin-top: 10px;
+    }
+}
+
+/*适配平板以下的屏幕，隐藏图片*/
+@media all and (max-width: 768px) {
+    .login-ad {
+        display: none;
+    }
+
+    .login-form {
+        max-width: 400px;
+    }
+}

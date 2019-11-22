@@ -6,93 +6,101 @@
     <!--禁止缩放-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
     <title>登录</title>
-    <link rel="icon" href="./favicon.ico">
-    <!--引入样式库-->
-    <link rel="stylesheet" type="text/css"
-          href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <!--自定义样式入口-->
+    <link rel="icon" href="favicon.ico">
+    <!--引入样式-->
     <link rel="stylesheet" type="text/css"
           href="./css/main.css">
+    <link rel="stylesheet" type="text/css"
+          href="./css/components/button.css">
 </head>
-<body>
-<!--卡片-->
-<section class="el-card is-always-shadow">
-    <!--卡片标题-->
-    <header class="el-card__header">
-        <div>欢迎回来</div>
-    </header>
-    <!--卡片内容，表单-->
-    <div class="el-card__body">
-        <form action=""
-              method="post"
-              class="el-form">
-            <!--账号-->
-            <div class="el-form-item">
-                <label for="account-input"
-                       class="el-form-item__label">账号</label>
-                <div class="el-form-item__content">
-                    <div class="el-input el-input--prefix el-input--suffix">
-                        <input type="text"
-                               placeholder="请输入账号"
-                               class="el-input__inner"
-                               id="account-input"
-                               required>
-                        <span class="el-input__prefix">
+<body class="login">
+<!--LOGO-->
+<header class="login-logo">
+    <img src="assets/logo.jpg" alt="logo">
+    <div class="hidden"><!--HIDDEN-->HIDDEN</div>
+</header>
+<!--登录页面的正式内容-->
+<section class="login-section">
+    <!--广告-->
+    <aside class="login-ad">
+        <img src="assets/ad.jpg" alt="advertisement">
+    </aside>
+    <!--表单卡片-->
+    <article class="el-card is-always-shadow login-form">
+        <!--卡片标题-->
+        <header class="el-card__header">
+            <div class="text-center">欢迎回来</div>
+        </header>
+        <!--卡片内容，表单-->
+        <div class="el-card__body">
+            <form action="index.html"
+                  method="post"
+                  class="el-form">
+                <!--账号-->
+                <div class="el-form-item">
+                    <label for="account-input"
+                           class="el-form-item__label">账号</label>
+                    <div class="el-form-item__content">
+                        <div class="el-input el-input--prefix el-input--suffix">
+                            <input type="text"
+                                   placeholder="请输入账号"
+                                   class="el-input__inner"
+                                   id="account-input"
+                                   required>
+                            <span class="el-input__prefix">
                             <i class="el-input__icon el-icon-user"></i>
                         </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--密码-->
-            <div class="el-form-item">
-                <label for="password-input"
-                       class="el-form-item__label">密码</label>
-                <div class="el-form-item__content">
-                    <div class="el-input el-input--prefix el-input--suffix">
-                        <input type="password"
-                               placeholder="请输入密码"
-                               class="el-input__inner"
-                               id="password-input"
-                               required>
-                        <span class="el-input__prefix">
+                <!--密码-->
+                <div class="el-form-item">
+                    <label for="password-input"
+                           class="el-form-item__label">密码</label>
+                    <div class="el-form-item__content">
+                        <div class="el-input el-input--prefix el-input--suffix">
+                            <input type="password"
+                                   placeholder="请输入密码"
+                                   class="el-input__inner"
+                                   id="password-input"
+                                   required>
+                            <span class="el-input__prefix">
                             <i class="el-input__icon el-icon-lock"></i>
                         </span>
-                        <span class="el-input__suffix">
+                            <span class="el-input__suffix">
                             <span class="el-input__suffix-inner"></span>
                         </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--登录-->
-            <div class="el-form-item">
-                <div class="el-form-item__content">
-                    <button type="submit"
-                            class="el-button el-button--primary"
-                            style="width: 100%;">
-                        <span>登录</span>
-                    </button>
-                </div>
-            </div>
-            <!--注册和清空-->
-            <div class="el-form-item is-no-asterisk">
-                <div class="el-form-item__content">
-                    <div class="left">
-                        还没有账号？
-                        <a href="./register.html"
-                           class="el-link el-link--default is-underline">
-                            <span class="el-link--inner">免费注册</span>
-                        </a>
+                <!--登录-->
+                <div class="el-form-item">
+                    <div class="el-form-item__content">
+                        <button type="submit"
+                                class="el-button el-button--primary width-full-container">
+                            <span>登录</span>
+                        </button>
                     </div>
-                    <button type="reset"
-                            class="el-button el-button--default right"
-                            style="width: 50%;">
-                        <span>清空</span>
-                    </button>
                 </div>
-            </div>
-        </form>
-    </div>
+                <!--注册和清空-->
+                <div class="el-form-item is-no-asterisk">
+                    <div class="el-form-item__content">
+                        <button type="reset"
+                                class="el-button el-button--default right width-half-container">
+                            <span>清空</span>
+                        </button>
+                        <div class="left login-register">
+                            还没有账号？
+                            <a href="register.html"
+                               class="el-link el-link--default is-underline">
+                                <span class="el-link--inner link">免费注册</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </article>
 </section>
-
 </body>
 </html>
