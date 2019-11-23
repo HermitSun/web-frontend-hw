@@ -1,0 +1,114 @@
+/*圣杯布局*/
+/*整个页面的样式，默认适配高分辨率PC及以上的大屏幕*/
+.index-body {
+    background: black;
+    color: white;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+/*左边的图片*/
+.index-left {
+    flex: 1 1 auto;
+
+    margin: 3px;
+    padding: 3px;
+}
+
+/*中间的视频和标题*/
+.index-center {
+    flex: 0 1 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/*右边的图片*/
+.index-right {
+    flex: 1 1 auto;
+
+    margin: 3px;
+    padding: 3px;
+}
+
+/*图片列表*/
+.image-list {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.image-list-item {
+    width: 160px;
+    height: 220px;
+    display: inline-block;
+    cursor: pointer;
+
+    margin: 5px auto;
+    padding: 3px;
+}
+
+.image-list-item img:hover {
+    border: 2px solid white;
+}
+
+/*去除视频focus时的蓝色边框*/
+video {
+    outline: none;
+}
+
+.new-line {
+    display: none;
+}
+
+/*适配平板和低分辨率PC*/
+@media all and (max-width: 1280px) {
+    .index-body {
+        flex-direction: column;
+    }
+
+    .index-center {
+        order: -1;
+    }
+
+    .index-center video {
+        width: 100%;
+    }
+
+    .image-list {
+        flex-direction: row;
+    }
+}
+
+/*适配手机及以下*/
+@media all and (max-width: 768px) {
+    .index-body {
+        flex-direction: column;
+    }
+
+    .index-center {
+        order: -1;
+    }
+
+    .image-list {
+        flex-direction: column;
+        padding-left: 0;
+    }
+
+    .image-list-item {
+        width: 140px;
+        height: 200px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .new-line {
+        display: block;
+    }
+}

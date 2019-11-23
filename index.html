@@ -11,7 +11,80 @@
     <link rel="stylesheet" type="text/css"
           href="css/main.css">
 </head>
-<body>
-
+<body class="index-body">
+<!--左侧的图片-->
+<!--加入width和height属性是预防不支持CSS-->
+<aside class="index-left">
+    <ul class="image-list">
+        <li class="image-list-item">
+            <img src="assets/images/poster1.jpg"
+                 width="160"
+                 height="220"
+                 title="《海上钢琴师》"
+                 alt="《海上钢琴师》">
+        </li>
+        <li class="image-list-item">
+            <img src="assets/images/poster2.jpg"
+                 width="160"
+                 height="220"
+                 title="《大约在冬季》"
+                 alt="《大约在冬季》">
+        </li>
+        <li class="image-list-item">
+            <img src="assets/images/poster3.jpg"
+                 width="160"
+                 height="220"
+                 title="《他们已不再变老》"
+                 alt="《他们已不再变老》">
+        </li>
+    </ul>
+</aside>
+<!--中间的视频-->
+<article class="index-center">
+    <header>
+        <h1>当前播放：<span class="new-line"><!--HIDDEN--></span>《让子弹飞 预告片》</h1>
+    </header>
+    <video controls
+           preload="auto"
+           poster="assets/images/poster6.jpg"
+           width="800">
+        <source src="assets/videos/1.mp4"
+                type="video/mp4">
+        <!--不支持H5时的降级-->
+        <p>很抱歉，您的浏览器不支持HTML5视频。</p>
+        <p>这里是
+            <a href="assets/videos/1.mp4"
+               class="el-link el-link--default is-underline">
+                <span class="el-link--inner link">视频的链接</span>
+            </a>。
+        </p>
+    </video>
+</article>
+<!--右侧的图片-->
+<aside class="index-right">
+    <ul class="image-list">
+        <li class="image-list-item">
+            <img src="assets/images/poster4.jpg"
+                 width="160"
+                 height="220"
+                 title="《决战中途岛》"
+                 alt="《决战中途岛》">
+        </li>
+        <li class="image-list-item">
+            <img src="assets/images/poster5.jpg"
+                 width="160"
+                 height="220"
+                 title="《长安道》"
+                 alt="《长安道》">
+        </li>
+        <li class="image-list-item current-image-list-item">
+            <img src="assets/images/poster6.jpg"
+                 width="160"
+                 height="220"
+                 title="《让子弹飞》"
+                 alt="《让子弹飞》">
+        </li>
+    </ul>
+</aside>
 </body>
 </html>
