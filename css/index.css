@@ -34,6 +34,11 @@
     padding: 3px;
 }
 
+/*电影描述的宽度*/
+.movie-desc {
+    width: 800px;
+}
+
 /*图片列表*/
 .image-list {
     list-style: none;
@@ -94,6 +99,10 @@ video {
 
     .index-center {
         order: -1;
+    }
+
+    .movie-desc {
+        width: 100%;
     }
 
     .image-list {
