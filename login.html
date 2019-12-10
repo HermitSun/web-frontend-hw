@@ -37,16 +37,18 @@
         <div class="el-card__body">
             <form action="index.html"
                   method="post"
-                  class="el-form">
+                  class="el-form"
+                  id="form-login">
                 <!--账号-->
-                <div class="el-form-item">
+                <div class="el-form-item"
+                     id="form-login-item-account">
                     <label for="account-input"
-                           class="el-form-item__label">账号</label>
+                           class="el-form-item__label">邮箱</label>
                     <div class="el-form-item__content">
                         <div class="el-input el-input--prefix el-input--suffix">
-                            <input type="text"
-                                   placeholder="请输入账号"
-                                   title="请输入账号"
+                            <input type="email"
+                                   placeholder="请输入邮箱"
+                                   title="请输入注册时填写的邮箱"
                                    class="el-input__inner"
                                    id="account-input"
                                    required>
@@ -54,20 +56,30 @@
                             <i class="el-input__icon el-icon-user"></i>
                         </span>
                         </div>
+                        <!--表单验证错误时显示-->
+                        <div class="el-form-item__error hidden email-error">
+                            请输入正确格式的邮箱（提示：邮箱的格式是xxx@xxx.com）
+                        </div>
+                        <!--为了安全，采用比较模糊的信息-->
+                        <div class="el-form-item__error hidden email-or-password-error">
+                            邮箱或密码错误，请检查输入
+                        </div>
                     </div>
                 </div>
                 <!--密码-->
-                <div class="el-form-item">
+                <div class="el-form-item"
+                     id="form-login-item-password">
                     <label for="password-input"
                            class="el-form-item__label">密码</label>
                     <div class="el-form-item__content">
                         <div class="el-input el-input--prefix el-input--suffix">
                             <input type="password"
-                                   placeholder="请输入密码（至少六位）"
-                                   title="密码至少六位"
+                                   placeholder="请输入密码"
+                                   title="密码至少6位，至多16位"
                                    class="el-input__inner"
                                    id="password-input"
-                                   pattern="\w{6,}"
+                                   pattern="\w{6,16}"
+                                   maxlength="16"
                                    required>
                             <span class="el-input__prefix">
                             <i class="el-input__icon el-icon-lock"></i>
@@ -75,6 +87,14 @@
                             <span class="el-input__suffix">
                             <span class="el-input__suffix-inner"></span>
                         </span>
+                        </div>
+                        <!--表单验证错误时显示-->
+                        <div class="el-form-item__error hidden password-error">
+                            请检查输入密码，密码至少6位，至多16位
+                        </div>
+                        <!--为了安全，采用比较模糊的信息-->
+                        <div class="el-form-item__error hidden email-or-password-error">
+                            邮箱或密码错误，请检查输入
                         </div>
                     </div>
                 </div>
@@ -108,4 +128,7 @@
     </article>
 </section>
 </body>
+<!--最后加载JS，避免阻塞-->
+<script src="scripts/utils/validation.js"></script>
+<script src="scripts/login.js"></script>
 </html>
