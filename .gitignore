@@ -1,1 +1,9 @@
+# IDE conf
 .idea/
+.vscode/
+
+# node_modules
+node_modules/
+
+# lock files
+package-lock.json
