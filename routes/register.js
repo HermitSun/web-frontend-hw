@@ -1,6 +1,9 @@
 var express = require("express");
 var router = express.Router();
 var path = require("path");
+// 加密
+var crypto = require("crypto");
+var hash = crypto.createHash("sha256");
 
 var modelUsers = require("../models/users");
 var StatusCode = require("../enums/status").StatusCodes;
@@ -16,10 +19,14 @@ router.get("/", function (req, res) {
 router.post("/", function (req, res) {
   var status = StatusCode.OK;
   var msg = ErrorMessages[status];
+  // 对密码加密
+  hash.update(req.body.password, "utf8");
+  var password = hash.digest("hex");
+  console.log(password);
 
   modelUsers.addUser(
     req.body.email,
-    req.body.password,
+    password,
     function (success) {
       if (!success) {
         status = StatusCode.INTERNAL_SERVER_ERROR;
