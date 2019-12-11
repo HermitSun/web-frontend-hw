@@ -35,7 +35,7 @@
         </header>
         <!--卡片内容，表单-->
         <div class="el-card__body">
-            <form action="login.html"
+            <form action="/login"
                   method="post"
                   class="el-form"
                   id="form-register">
@@ -139,7 +139,7 @@
                         </button>
                         <div class="left login-register">
                             已有账号？
-                            <a href="login.html"
+                            <a href="/login"
                                class="el-link el-link--default is-underline">
                                 <span class="el-link--inner link">欢迎回来</span>
                             </a>
@@ -152,6 +152,8 @@
 </section>
 </body>
 <!--最后加载JS，避免阻塞-->
+<script src="scripts/utils/ajax.js"></script>
+<script src="scripts/utils/cookies.js"></script>
 <script src="scripts/utils/validation.js"></script>
 <script src="scripts/register.js"></script>
 </html>
