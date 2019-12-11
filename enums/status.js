@@ -14,6 +14,14 @@ var StatusCodes = {
    */
   BAD_REQUEST: 400,
   /**
+   * 未授权
+   */
+  UNAUTHORIZED: 401,
+  /**
+   * 禁止访问
+   */
+  FORBIDDEN: 403,
+  /**
    * 请求的URL不存在
    */
   NOT_FOUND: 404,
@@ -21,6 +29,10 @@ var StatusCodes = {
    * 服务端错误
    */
   INTERNAL_SERVER_ERROR: 500,
+  /**
+   * 用户已存在
+   */
+  USER_HAS_EXIST: 50001,
   /**
    * 网关错误
    */
@@ -41,8 +53,10 @@ var StatusCodes = {
 var ErrorMessages = {
   200: "请求成功",
   400: "参数错误",
+  401: "需要先登录",
   404: "请求内容不存在",
   500: "服务端错误",
+  50001: "用户已存在",
   502: "网关错误",
   503: "服务不可用",
   504: "网关超时",
