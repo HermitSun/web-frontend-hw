@@ -49,8 +49,28 @@
     validate_password();
     confirm_password();
     if (is_legal_email && is_legal_password && is_legal_confirm_password) {
-      // TODO: 连上数据库之后要往数据库写
-      window.location.href = "login.html";
+      // 注册
+      ajax({
+        type: "POST",
+        url: "/register",
+        async: true,
+        dataType: "json",
+        data: {
+          email: registerFormItemAccountInput.value,
+          password: registerFormItemPasswordInput.value
+        },
+        success: function (res) {
+          console.log(res);
+          if (res.status === 200) {
+            window.location.href = "/login";
+          } else {
+            alert(res.msg);
+          }
+        },
+        error: function (err) {
+          // TODO: 网络错误？
+        }
+      });
     }
   });
 

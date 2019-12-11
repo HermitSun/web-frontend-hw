@@ -40,18 +40,35 @@
     validate_email();
     validate_password();
     if (is_legal_email && is_legal_password) {
-      // TODO: 暂时写死，回头连数据库
-      if (loginFormItemAccountInput.value === "test@test.com" &&
-        loginFormItemPasswordInput.value === "123456") {
-        window.location.href = "index.html";
-      } else {
-        // 邮箱或密码错误
-        accountOrPasswordErrorMsg.forEach(function (msg) {
-          loginFormItemAccount.classList.add("is-error");
-          loginFormItemPassword.classList.add("is-error");
-          msg.classList.remove("hidden");
-        });
-      }
+      // 登录
+      ajax({
+        type: "POST",
+        url: "/login",
+        async: true,
+        dataType: "json",
+        data: {
+          email: loginFormItemAccountInput.value,
+          password: loginFormItemPasswordInput.value
+        },
+        success: function (res) {
+          if (res.status === 200) {
+            console.log("invoke");
+            // 设置cookie，24h后过期
+            addCookie("email", loginFormItemPasswordInput.value, 24);
+            window.location.href = "/";
+          } else {
+            // 邮箱或密码错误
+            accountOrPasswordErrorMsg.forEach(function (msg) {
+              loginFormItemAccount.classList.add("is-error");
+              loginFormItemPassword.classList.add("is-error");
+              msg.classList.remove("hidden");
+            });
+          }
+        },
+        error: function (err) {
+          // TODO: 网络错误？
+        }
+      });
     }
   });
 

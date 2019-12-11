@@ -23,12 +23,14 @@ router.post("/", function (req, res) {
     .update(req.body.password, "utf8")
     .digest("hex");
 
+  // 在建表时利用UNIQUE关键字确保不能插入相同邮箱的用户
+  // TODO: 默认错误是用户重复
   modelUsers.addUser(
     req.body.email,
     password,
     function (success) {
       if (!success) {
-        status = StatusCode.INTERNAL_SERVER_ERROR;
+        status = StatusCode.USER_HAS_EXIST;
       }
       msg = ErrorMessages[status];
       // 在回调里返回
