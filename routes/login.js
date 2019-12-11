@@ -3,7 +3,6 @@ var router = express.Router();
 var path = require("path");
 // 加密
 var crypto = require("crypto");
-var hash = crypto.createHash("sha256");
 
 var modelUsers = require("../models/users");
 var StatusCode = require("../enums/status").StatusCodes;
@@ -19,9 +18,10 @@ router.get("/", function (req, res) {
 router.post("/", function (req, res) {
   var status = StatusCode.OK;
   var msg = ErrorMessages[status];
-  // 对密码加密
-  hash.update(req.body.password, "utf8");
-  var password = hash.digest("hex");
+  // 对密码加密，和数据库内加密的密码进行比对
+  var password = crypto.createHash("sha256")
+    .update(req.body.password, "utf8")
+    .digest("hex");
 
   modelUsers.findByEmailAndPassword(
     req.body.email,
