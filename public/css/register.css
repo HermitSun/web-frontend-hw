@@ -9,6 +9,11 @@ html {
     justify-content: space-around;
 }
 
+.el-message {
+    top: 20px;
+    z-index: 2000;
+}
+
 /*LOGO*/
 .login-logo {
     flex: 0 1 auto;
