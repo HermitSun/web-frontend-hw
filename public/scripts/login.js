@@ -16,6 +16,13 @@
   // 登录表单中的提交按钮
   // 表单只有一个提交按钮，所以直接用子元素选择器
   var loginFormButtonSubmit = globalThis.querySelector("#form-login button[type=\"submit\"]");
+  // 消息提示
+  // 成功消息
+  var loginSuccessMsg = globalThis.querySelector("#login-success-message");
+  var loginSuccessMsgContent = globalThis.querySelector("#login-success-message p");
+  // 错误消息
+  var loginErrorMsg = globalThis.querySelector("#login-error-message");
+  var loginErrorMsgContent = globalThis.querySelector("#login-error-message p");
   // 表单验证
   var accountErrorMsg = globalThis.querySelector(".email-error");
   var accountOrPasswordErrorMsg = globalThis.querySelectorAll(".email-or-password-error");
@@ -52,10 +59,18 @@
         },
         success: function (res) {
           if (res.status === 200) {
-            console.log("invoke");
             // 设置cookie，24h后过期
             addCookie("email", loginFormItemPasswordInput.value, 24);
-            window.location.href = "/";
+            showMsg(
+              loginSuccessMsg,
+              loginSuccessMsgContent,
+              "登录成功",
+              "success"
+            );
+            // 1s后跳转
+            setTimeout(function () {
+              window.location.href = "/";
+            }, 1000);
           } else {
             // 邮箱或密码错误
             accountOrPasswordErrorMsg.forEach(function (msg) {
@@ -63,10 +78,21 @@
               loginFormItemPassword.classList.add("is-error");
               msg.classList.remove("hidden");
             });
+            showMsg(
+              loginErrorMsg,
+              loginErrorMsgContent,
+              "邮箱或密码错误，请检查输入",
+              "error"
+            );
           }
         },
         error: function (err) {
-          // TODO: 网络错误？
+          showMsg(
+            loginErrorMsg,
+            loginErrorMsgContent,
+            err.toString(),
+            "error"
+          );
         }
       });
     }

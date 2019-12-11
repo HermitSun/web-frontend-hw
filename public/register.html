@@ -150,10 +150,27 @@
         </div>
     </article>
 </section>
+<!--消息提示-->
+<!--只在启用JavaScript时生效-->
+<!--成功消息-->
+<div role="alert"
+     class="hidden"
+     id="register-success-message">
+    <i class="el-message__icon el-icon-success"></i>
+    <p class="el-message__content"></p>
+</div>
+<!--错误消息-->
+<div role="alert"
+     class="hidden"
+     id="register-error-message">
+    <i class="el-message__icon el-icon-error"></i>
+    <p class="el-message__content"></p>
+</div>
 </body>
 <!--最后加载JS，避免阻塞-->
 <script src="scripts/utils/ajax.js"></script>
 <script src="scripts/utils/cookies.js"></script>
+<script src="scripts/utils/messages.js"></script>
 <script src="scripts/utils/validation.js"></script>
 <script src="scripts/register.js"></script>
 </html>

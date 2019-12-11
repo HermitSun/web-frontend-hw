@@ -18,6 +18,13 @@
   var registerFormItemConfirmPasswordInput = globalThis.querySelector("#confirm-password-input");
   // 表单只有一个提交按钮，所以直接用子元素选择器
   var registerFormButtonSubmit = globalThis.querySelector("#form-register button[type=\"submit\"]");
+  // 消息提示
+  // 成功消息
+  var registerSuccessMsg = globalThis.querySelector("#register-success-message");
+  var registerSuccessMsgContent = globalThis.querySelector("#register-success-message p");
+  // 错误消息
+  var registerErrorMsg = globalThis.querySelector("#register-error-message");
+  var registerErrorMsgContent = globalThis.querySelector("#register-error-message p");
   // 表单验证
   var accountErrorMsg = globalThis.querySelector(".email-error");
   var passwordErrorMsg = globalThis.querySelector(".password-error");
@@ -62,13 +69,32 @@
         success: function (res) {
           console.log(res);
           if (res.status === 200) {
-            window.location.href = "/login";
+            showMsg(
+              registerSuccessMsg,
+              registerSuccessMsgContent,
+              "注册成功",
+              "success"
+            );
+            // 1s后跳转到登录页
+            setTimeout(function () {
+              window.location.href = "/login";
+            }, 1000);
           } else {
-            alert(res.msg);
+            showMsg(
+              registerErrorMsg,
+              registerErrorMsgContent,
+              res.msg,
+              "error"
+            );
           }
         },
         error: function (err) {
-          // TODO: 网络错误？
+          showMsg(
+            registerErrorMsg,
+            registerErrorMsgContent,
+            err.toString(),
+            "error"
+          );
         }
       });
     }
