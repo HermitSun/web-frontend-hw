@@ -1,0 +1,39 @@
+/*向左滑动50%的动画效果*/
+.slide-left-50 {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-transition: opacity .3s, top .4s, -webkit-transform .4s;
+    transition: opacity .3s, top .4s, -webkit-transform .4s;
+    transition: opacity .3s, transform .4s, top .4s;
+    transition: opacity .3s, transform .4s, top .4s, -webkit-transform .4s;
+}
+
+/*向左滑动100%的动画效果*/
+.slide-left-100 {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-100%);
+    -webkit-transition: opacity .3s, top .4s, -webkit-transform .4s;
+    transition: opacity .3s, top .4s, -webkit-transform .4s;
+    transition: opacity .3s, transform .4s, top .4s;
+    transition: opacity .3s, transform .4s, top .4s, -webkit-transform .4s;
+}
+
+/*向右滑动50%的动画效果*/
+.slide-left-50 {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(100%);
+    -webkit-transition: opacity .3s, top .4s, -webkit-transform .4s;
+    transition: opacity .3s, top .4s, -webkit-transform .4s;
+    transition: opacity .3s, transform .4s, top .4s;
+    transition: opacity .3s, transform .4s, top .4s, -webkit-transform .4s;
+}
+
+/*向右滑动100%的动画效果*/
+.slide-left-100 {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(100%);
+    -webkit-transition: opacity .3s, top .4s, -webkit-transform .4s;
+    transition: opacity .3s, top .4s, -webkit-transform .4s;
+    transition: opacity .3s, transform .4s, top .4s;
+    transition: opacity .3s, transform .4s, top .4s, -webkit-transform .4s;
+}
