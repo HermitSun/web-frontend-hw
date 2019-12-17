@@ -8,4 +8,6 @@ CREATE TABLE users(
     password VARCHAR(100) NOT NULL,
     token VARCHAR(100),
     PRIMARY KEY (id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+INSERT INTO users (email, password) VALUES ('test@test.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92');
