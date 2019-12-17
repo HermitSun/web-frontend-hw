@@ -1,3 +1,13 @@
+/*清除浏览器默认样式*/
+@import "normalize.min.css";
+/*引入所需的其他样式*/
+@import "common/font.css";
+@import "common/visibility.css";
+@import "components/icon.css";
+@import "components/image.css";
+@import "components/link.css";
+@import "components/message.css";
+
 /*圣杯布局*/
 /*整个页面的样式，默认适配高分辨率PC及以上的大屏幕*/
 .index-body {
@@ -6,6 +16,12 @@
 
     display: flex;
     justify-content: space-around;
+}
+
+/*加载样式*/
+.el-image__error {
+    color: white;
+    background-color: black;
 }
 
 /*左边的图片*/
@@ -32,6 +48,11 @@
 
     margin: 3px;
     padding: 3px;
+}
+
+/*超链接*/
+.link {
+    font-weight: bold;
 }
 
 /*电影描述的宽度*/
