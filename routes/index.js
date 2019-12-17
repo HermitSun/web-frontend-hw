@@ -32,9 +32,8 @@ router.get("/*.html", function (req, res) {
 
 // 匹配静态资源，比如图片、字体、CSS、JS
 // TODO: 可能需要更详尽的列表，这里只是挑了几个目前需要的
-router.get(/^.*\.(jpg|jpeg|png|mp4|js|css|woff|ttf)$/, function (req, res) {
+router.get(/^.*\.(jpg|jpeg|png|js|css|woff|ttf)$/, function (req, res) {
   var file = path.join(__dirname, "../public" + req.url);
-  console.log(file);
   fs.stat(file, (err) => {
     if (err) {
       res.send(404);
@@ -54,6 +53,42 @@ router.get(/^.*\.(jpg|jpeg|png|mp4|js|css|woff|ttf)$/, function (req, res) {
       }
     }
   });
+});
+
+// 视频分块加载
+// 感谢原作者：简书@水一川
+router.get(/^.*\.(mp4)$/, function (req, res) {
+  var file = path.join(__dirname, "../public" + req.url);
+  var stat = fs.statSync(file);
+  var fileSize = stat.size;
+  var range = req.headers.range;
+
+  if (range) {
+    //有range头才使用206状态码
+    var parts = range.replace(/bytes=/, "").split("-");
+    var start = parseInt(parts[0], 10);
+    var end = parts[1] ? parseInt(parts[1], 10) : start + 999999;
+
+    // end 在最后取值为 fileSize - 1
+    end = end > (fileSize - 1) ? fileSize - 1 : end;
+    var chunkSize = (end - start) + 1;
+    file = fs.createReadStream(file, {start, end});
+    var head = {
+      "Content-Range": `bytes ${start}-${end}/${fileSize}`,
+      "Accept-Ranges": "bytes",
+      "Content-Length": chunkSize,
+      "Content-Type": "video/mp4"
+    };
+    res.writeHead(206, head);
+    file.pipe(res);
+  } else {
+    head = {
+      "Content-Length": fileSize,
+      "Content-Type": "video/mp4",
+    };
+    res.writeHead(200, head);
+    fs.createReadStream(path).pipe(res);
+  }
 });
 
 // 除静态资源外，匹配404页面
