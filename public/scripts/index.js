@@ -15,7 +15,7 @@
   // 图片是否已加载
   var imageHasLoaded = [];
   // 是否已全部加载（可以进一步优化循环性能）
-  var imageAllLoaded = false;
+  var loadedCount = 0;
   for (var i = 1; i <= IMAGE_COUNT; ++i) {
     // 利用IIFE解决循环 + 回调的问题
     (function (i) {
@@ -97,7 +97,7 @@
     for (i = 0; i < imageItemsList.length; ++i) {
       (function (i) {
         // 未全部加载时判断
-        if (!imageAllLoaded) {
+        if (loadedCount !== IMAGE_COUNT) {
           // 如果图片未加载
           if (!imageHasLoaded[i]) {
             var Y = getElementY(imageItemsList[i]);
@@ -124,16 +124,7 @@
                   imgDOM.classList.remove("not-exist");
                   // 标记为加载完成
                   imageHasLoaded[i] = true;
-                  // 判断是否全部加载完
-                  // 图片数量较大的时候可能需要作出取舍，这里应该能优化性能？
-                  imageAllLoaded = true;
-                  for (var j = 0; j < IMAGE_COUNT; ++j) {
-                    if (!imageHasLoaded[j]) {
-                      imageAllLoaded = false;
-                      break;
-                    }
-                  }
-                  console.log(imageHasLoaded);
+                  ++loadedCount;
                 },
                 error: function () {
                   showMsg(
