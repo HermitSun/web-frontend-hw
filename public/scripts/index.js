@@ -1,4 +1,105 @@
 /**
+ * 原生XHR封装类似jQuery的ajax
+ * 感谢原作者南歌子
+ * @date 2019.12.11
+ */
+
+/**
+ 样例（GET请求需要自行拼接URL）
+ ajax({
+    type: "POST",
+    url: "/login",
+    async: true,
+    dataType: "json",
+    data: {},
+    beforeSend: function () {},
+    success: function () {},
+    error: function () {}
+  });
+ */
+
+function ajax() {
+  var ajaxData = {
+    type: (arguments[0].type || "GET").toUpperCase(),
+    url: arguments[0].url || "",
+    async: arguments[0].async || "true",
+    data: arguments[0].data || null,
+    dataType: arguments[0].dataType || "json",
+    contentType: arguments[0].contentType || "application/x-www-form-urlencoded; charset=utf-8",
+    beforeSend: arguments[0].beforeSend || function () {
+    },
+    success: arguments[0].success || function () {
+    },
+    error: arguments[0].error || function () {
+    }
+  };
+
+  ajaxData.beforeSend();
+  var xhr = createxmlHttpRequest();
+  xhr.responseType = ajaxData.dataType;
+
+  xhr.open(ajaxData.type, ajaxData.url, ajaxData.async);
+  xhr.setRequestHeader("Content-Type", ajaxData.contentType);
+  xhr.send(convertData(ajaxData.data));
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        ajaxData.success(xhr.response);
+      } else {
+        ajaxData.error();
+      }
+    }
+  };
+}
+
+function createxmlHttpRequest() {
+  if (window.ActiveXObject) {
+    return new ActiveXObject("Microsoft.XMLHTTP");
+  } else if (window.XMLHttpRequest) {
+    return new XMLHttpRequest();
+  }
+}
+
+function convertData(data) {
+  if (typeof data === "object") {
+    var convertResult = "";
+    for (var c in data) {
+      convertResult += c + "=" + data[c] + "&";
+    }
+    convertResult = convertResult.substring(0, convertResult.length - 1);
+    return convertResult;
+  } else {
+    return data;
+  }
+}
+
+/**
+ * 用于显示（和隐藏）消息提示的工具函数
+ * @author WenSun
+ * @date 2019.12.11
+ */
+
+// 显示消息提示，3s后消失
+function showMsg(msgDOM, msgContentDOM, msgContent, type) {
+  var msgType = "el-message--" + type;
+  msgContentDOM.innerText = msgContent;
+  msgDOM.classList.remove("hidden");
+  msgDOM.classList.add("el-message", msgType);
+  // 利用事件队列保证同步
+  setTimeout(function () {
+    msgDOM.classList.add("el-message-fade-leave", "el-message-fade-leave-active");
+  }, 3000);
+  setTimeout(function () {
+    msgDOM.classList.remove("el-message", msgType, "el-message-fade-leave", "el-message-fade-leave-active");
+    msgContentDOM.innerText = "";
+  }, 3000);
+  setTimeout(function () {
+    msgDOM.classList.add("hidden");
+  }, 3000);
+}
+
+/**
  * 首页页面逻辑
  * 为了兼容，还是选择使用var进行变量声明
  * 并不是很优雅，不过无所谓了
